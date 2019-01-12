@@ -1,0 +1,29 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Přihlášení{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post" action="{{ url('user', 'loginDo') }}">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email</label>
+            <div class="col-sm-2">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Zadejte email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Heslo</label>
+            <div class="col-sm-2">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Zadejte heslo">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default">Přihlásit se</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="col-sm-offset-2 col-sm-2">
+        <a href="{{ url('user', 'register') }}">Registrujte se zde</a>
+    </div>
+{% endblock %}

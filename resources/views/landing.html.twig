@@ -1,0 +1,8 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Úvodní stránka{% endblock %}
+
+{% block content %}
+    <h1>Vítejte na stránkách konference</h1>
+    <p>Všechny publikované články si můžete přečíst na tomto <a href="{{ url('home', 'articles') }}">odkazu</a>.</p>
+{% endblock %}

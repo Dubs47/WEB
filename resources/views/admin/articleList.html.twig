@@ -1,0 +1,23 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Seznam článků ke schválení{% endblock %}
+
+{% block content %}
+    {% if articles is not empty %}
+        <div class="admin-articles">
+            <div class="admin-articles-header-row">
+                <div class="col-xs-2">Název</div>
+                <div class="col-xs-2">Autoři</div>
+                <div class="col-xs-6">Recenze (K, O, D)</div>
+                <div class="col-xs-2">Rozhodnutí</div>
+            </div>
+            {% for article in articles %}
+                <div class="admin-articles-row">
+                    {% include "layouts/_article.html.twig" %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        Žádné články ke schválení
+    {% endif %}
+{% endblock %}

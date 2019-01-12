@@ -1,0 +1,31 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Vytvořit nový článek{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post" action="{{ url('article', 'normalArticleCreateDo    ') }}" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Název článku</label>
+            <div class="col-sm-6">
+                <input type="text" name="name" class="form-control" id="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="abstract">Abstract</label>
+            <div class="col-sm-6">
+                <textarea name="abstract" class="form-control" id="abstract"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pdf">PDF soubor</label>
+            <div class="col-sm-2">
+                <input type="file" name="pdf" class="form-control" id="pdf">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default">Vytvořit</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Seznam mých článků{% endblock %}
+
+{% block content %}
+    <a href="{{ url('article', 'normalArticleCreate') }}">Přidat nový článek</a>
+    {% if articles is not empty %}
+        <div class="col-sm-3">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Název článku</th>
+                    <th>Editovat</th>
+                    <th>Vymazat</th>
+                    <th>Stav článku</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.name }}</td>
+                        <td><a href="{{ url('article', 'normalArticleEdit', {article_id: article.id}) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td><a href="{{ url('article', 'normalArticleRemoveDo', {article_id: article.id}) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        <td>
+                            {% if article.state == 0 %}
+                                <b>Recenzován</b>
+                            {% elseif article.state == 1 %}
+                                <b class="text-danger">Zamítnuto</b>
+                            {% elseif article.state == 2 %}
+                                <b class="text-success">Publikováno</b>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        Zatím jste žádný článek nevytvořili
+    {% endif %}
+{% endblock %}

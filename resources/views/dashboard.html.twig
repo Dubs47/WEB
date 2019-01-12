@@ -1,0 +1,14 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Nástěnka{% endblock %}
+
+{% block content %}
+    <h1>Nástěnka</h1>
+    {% if isNormal() %}
+        <a href="{{ url('article', 'normalArticleList') }}">Seznam mých článků</a>
+    {% elseif isReviewer() %}
+        <a href="{{ url('article', 'reviewerArticleList') }}">Seznam článků k hodnocení</a>
+    {% elseif isAdmin() %}
+        <a href="{{ url('article', 'adminArticleList') }}">Seznam všech článků</a>
+    {% endif %}
+{% endblock %}

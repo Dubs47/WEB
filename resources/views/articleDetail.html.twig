@@ -1,0 +1,15 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Veřejné články{% endblock %}
+
+{% block content %}
+    <h1>{{ article.name }}</h1>
+    <p>od: {{ article.authorName }} {{ article.authorSurname }}</p>
+
+    <br><a href="upload/{{ article.file }}" download="clanek.pdf">Stáhnout soubor</a>
+
+    <h2>Abstrakt</h2>
+    <p>
+        {{ article.abstract }}
+    </p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "name": "dubs47",
+  "description": "web",
+  "authors": [
+    {
+      "name": "Dubs47",
+      "email": "dubs4747@email.cz"
+    }
+  ],
+  "require": {
+    "twig/twig": "^2.4",
+    "php": ">=7"
+  }
+}
+

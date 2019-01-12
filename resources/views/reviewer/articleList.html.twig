@@ -1,0 +1,28 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Seznam článků k recenzi{% endblock %}
+
+{% block content %}
+    {% if requests is not empty %}
+        <div class="col-sm-3">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Název článku</th>
+                    <th>Hodnotit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for request in requests %}
+                    <tr>
+                        <td>{{ request.articleName }}</td>
+                        <td><a href="{{ url('article', 'review', {request_id: request.id}) }}"><span class="glyphicon glyphicon-plus-sign"></span></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        Žádný článek vám nebyl přidělen k recenzi.
+    {% endif %}
+{% endblock %}

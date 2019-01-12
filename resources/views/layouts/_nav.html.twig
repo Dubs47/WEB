@@ -1,0 +1,15 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ url('home', 'index') }}">Úvod</a></li>
+            <li><a href="{{ url('home', 'articles') }}">Seznam článků</a></li>
+
+            {% if not isLogged() %}
+                <li><a href="{{ url('user', 'login') }}">Přihlášení</a></li>
+            {% else %}
+                <li><a href="{{ url('user', 'dashboard') }}">Nástěnka</a></li>
+                <li><a href="{{ url('user', 'logout') }}">Odhlášení</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

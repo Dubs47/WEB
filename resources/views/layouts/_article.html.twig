@@ -1,0 +1,98 @@
+<div class="col-xs-2">
+    {{ article.name }}
+</div>
+
+<div class="col-xs-2">
+    {{ article.authorName }} {{ article.authorSurname }}
+</div>
+
+<div class="col-xs-6 container">
+    <div class="admin-articles-small-row row">
+        {% if article.state == 0 %}
+            {% if article.r1c1 is not empty %}
+                <div class="col-xs-3">{{ article.r1c1 }}</div>
+                <div class="col-xs-3">{{ article.r1c2 }}</div>
+                <div class="col-xs-3">{{ article.r1c3 }}</div>
+                <div class="col-xs-3">{{ ((((article.r1c1 + article.r1c2 + article.r1c3)) / 3.0))|round(2, 'floor') }}</div>
+            {% else %}
+                <form method="post" action="{{ url('admin', 'requestReview') }}">
+                    <div class="col-xs-6">
+                        <select class="reviewer_select form-control" name="reviewer_id" title="Recenzenti">
+                            {% for reviewer in reviewers %}
+                                <option value="{{ reviewer.id }}">{{ reviewer.name }} {{ reviewer.surname }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="article_id" value="{{ article.id }}">
+                        <input type="hidden" name="review_id" value="1">
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" value="Přidělit k recenzi">
+                    </div>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="admin-articles-small-row row">
+        {% if article.state == 0 %}
+            {% if article.r2c1 is not empty %}
+                <div class="col-xs-3">{{ article.r2c1 }}</div>
+                <div class="col-xs-3">{{ article.r2c2 }}</div>
+                <div class="col-xs-3">{{ article.r2c3 }}</div>
+                <div class="col-xs-3">{{ ((((article.r2c1 + article.r2c2 + article.r2c3)) / 3.0))|round(2, 'floor') }}</div>
+            {% else %}
+                <form method="post" action="{{ url('admin', 'requestReview') }}">
+                    <div class="col-xs-6">
+                        <select class="reviewer_select form-control" name="reviewer_id" title="Recenzenti">
+                            {% for reviewer in reviewers %}
+                                <option value="{{ reviewer.id }}">{{ reviewer.name }} {{ reviewer.surname }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="article_id" value="{{ article.id }}">
+                        <input type="hidden" name="review_id" value="2">
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" value="Přidělit k recenzi">
+                    </div>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="admin-articles-small-row row">
+        {% if article.state == 0 %}
+            {% if article.r3c1 is not empty %}
+                <div class="col-xs-3">{{ article.r3c1 }}</div>
+                <div class="col-xs-3">{{ article.r3c2 }}</div>
+                <div class="col-xs-3">{{ article.r3c3 }}</div>
+                <div class="col-xs-3">{{ ((((article.r3c1 + article.r3c2 + article.r3c3)) / 3.0))|round(2, 'floor') }}</div>
+            {% else %}
+                <form method="post" action="{{ url('admin', 'requestReview') }}">
+                    <div class="col-xs-6">
+                        <select class="reviewer_select form-control" name="reviewer_id" title="Recenzenti">
+                            {% for reviewer in reviewers %}
+                                <option value="{{ reviewer.id }}">{{ reviewer.name }} {{ reviewer.surname }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="article_id" value="{{ article.id }}">
+                        <input type="hidden" name="review_id" value="3">
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" value="Přidělit k recenzi">
+                    </div>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="col-xs-2">
+    {% if article.state == 0 %}
+        {% if article.r1c1 is not empty and article.r2c1 is not empty and article.r3c1 is not empty %}
+            <a href="{{ url('admin', 'publishDo', {article_id: article.id}) }}">Přijmout</a>
+        {% endif %}
+        <a href="{{ url('admin', 'rejectDo', {article_id: article.id}) }}">Zamítnout</a>
+    {% elseif article.state == 1 %}
+        <b class="text-danger">Zamítnuto</b>
+    {% elseif article.state == 2 %}
+        <b class="text-success">Publikováno</b>
+    {% endif %}
+</div>

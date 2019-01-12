@@ -1,0 +1,46 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Správa uživatelů{% endblock %}
+
+{% block content %}
+    {% if users is not empty %}
+        <div class="col-sm-6">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Uživatel</th>
+                    <th>Role</th>
+                    <th>Zablokovat</th>
+                    <th>Povýšit</th>
+                    <th>Odebrat práva</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for uuser in users %}
+                    <tr>
+                        <td>{{ uuser.name }} {{ uuser.surname }}</td>
+                        {% if uuser.role == "0" %}
+                            <td>Autor</td>
+                            <td><a href="{{ url('admin', 'blockDo', {user_id: uuser.id}) }}"><span class="glyphicon glyphicon-volume-off"></span></a></td>
+                            <td><a href="{{ url('admin', 'promoteDo', {user_id: uuser.id}) }}"><span class="glyphicon glyphicon-plus"></span></a></td>
+                            <td></td>
+                        {% elseif uuser.role == "1" %}
+                            <td>Recenzent</td>
+                            <td><a href="{{ url('admin', 'blockDo', {user_id: uuser.id}) }}"><span class="glyphicon glyphicon-volume-off"></span></a></td>
+                            <td></td>
+                            <td><a href="{{ url('admin', 'demoteDo', {user_id: uuser.id}) }}"><span class="glyphicon glyphicon-minus"></span></a></td>
+                        {% elseif uuser.role == "2" %}
+                            <td>Admin</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        Neexistují žádní uživatelé
+    {% endif %}
+{% endblock %}

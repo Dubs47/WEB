@@ -1,0 +1,30 @@
+{% extends "layouts/app.html.twig" %}
+
+{% block title %}Veřejné články{% endblock %}
+
+{% block content %}
+    <h1>Veřejné články</h1>
+    {% if articles is not empty %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Název článku</th>
+                <th>Autor</th>
+                <th>Hodnocení</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td><a href="{{ url('home', 'articleDetail', {article_id: article.id}) }}">{{ article.name }}</a>
+                    </td>
+                    <td>{{ article.authorName }} {{ article.authorSurname }}</td>
+                    <td>{{ article.rating }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Momentálně žádné články
+    {% endif %}
+{% endblock %}
